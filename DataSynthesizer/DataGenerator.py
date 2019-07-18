@@ -1,8 +1,8 @@
 from numpy import random
 from pandas import DataFrame
 
-from datatypes.utils.AttributeLoader import parse_json
-from lib.utils import set_random_seed, read_json_file, generate_random_string
+from DataSynthesizer.datatypes.utils.AttributeLoader import parse_json
+from DataSynthesizer.lib.utils import set_random_seed, read_json_file, generate_random_string
 
 
 class DataGenerator(object):
@@ -115,15 +115,3 @@ class DataGenerator(object):
 
     def save_synthetic_data(self, to_file):
         self.synthetic_dataset.to_csv(to_file, index=False)
-
-
-if __name__ == '__main__':
-    from time import time
-
-    dataset_description_file = '../out/AdultIncome/description_test.txt'
-    generator = DataGenerator()
-
-    t = time()
-    generator.generate_dataset_in_correlated_attribute_mode(51, dataset_description_file)
-    print('running time: {} s'.format(time() - t))
-    print(generator.synthetic_dataset.loc[:50])
